@@ -1,0 +1,77 @@
+<%- include('./__header'); %>
+
+<body style="padding-top: 55px">
+
+    <%- include('./__navigation'); %>
+	
+	<div class="container">
+	<div class="row">
+
+        <div class="col-lg-8 offset-lg-2">
+        <h4 class="text-center mt-4 mb-4">LDAPアカウント SSH公開鍵登録</h4>
+            
+        <div class="card">
+        <div class="card-body">
+                
+            <form method="POST" action="/registerpublickey">
+            <div class="form-group row">
+                <label for="uid" class="col-md-4 col-form-label text-md-right">ユーザ名</label>
+                <input id="_csrf" type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <div class="col-md-6">
+                    <input id="uid" type="text" class="form-control" name="uid" value="<%= uid %>" disabled>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="password" class="col-md-4 col-form-label text-md-right">パスワード</label>
+                <div class="col-md-6">
+                    <input id="password" type="password" class="form-control" name="password" autofocus required>
+                    <small id="passwordhint" class="form-text text-muted">
+                        秘密鍵のパスフレーズではありません<br>
+                        LDAPアカウントのパスワードを入力してください<br>
+                    </small>
+                </div>
+            </div>                     
+            <div class="form-group row">
+                <label for="publickey" class="col-md-4 col-form-label text-md-right">公開鍵</label>
+                <div class="col-md-6">
+                    <input id="publickey" type="text" class="form-control" name="publickey" autofocus required>
+                    <small id="publickeyhint" class="form-text text-muted">
+                        OpenSSH形式で作成した公開鍵(id_rsa.pub,id_ed25519.pub)の中身を入力してください<br>
+                        例: ssh-rsa AAAA...XXX== や ssh-ed25519 AAAA...XXXなど<br>
+                        username@hostname等のコメントは不要です
+                    </small>
+                </div>
+            </div>
+            <div class="form-group row mb-0">
+                <div class="col-md-8 offset-md-4">
+        
+                <% if(errorMessage) { %>
+                    <div class="alert alert-danger col-md-10">
+                    <% for (let n in errorMessage) { %>
+                        <%= errorMessage[n].msg %><br>
+                    <% } %>
+                    </div>
+                <% } %>
+                <% if(authErrorMessage) { %>
+                    <div class="alert alert-danger col-md-10">
+                    <%= authErrorMessage %>
+                    </div>
+                <% } %>
+                
+                <button type="submit" class="btn btn-primary">登録</button>
+                </div>
+            </div>
+            </form>
+            
+        </div>
+        </div>
+        </div>
+
+	</div>
+
+    <%- include('./__copyright'); %>
+
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+{
+  "name": "node-smbldap-passwd",
+  "version": "1.0.0",
+  "description": "Web application to change LDAP password and Samba password.",
+  "main": "server/app.js",
+  "scripts": {
+    "start": "node server/app.js"
+  },
+  "author": "MelonSoda",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "config": "^3.3.6",
+    "connect-flash": "^0.1.1",
+    "csurf": "^1.11.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "express-validator": "^6.13.0",
+    "fs": "0.0.1-security",
+    "helmet": "^4.6.0",
+    "https": "^1.0.0",
+    "ldapjs": "^2.3.1",
+    "log-timestamp": "^0.3.0",
+    "passport": "^0.5.0",
+    "passport-local": "^1.0.0",
+    "smbhash": "0.0.1",
+    "ssha": "^1.0.1"
+  }
+}

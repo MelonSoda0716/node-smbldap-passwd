@@ -1,0 +1,77 @@
+<%- include('./__header'); %>
+
+<body style="padding-top: 55px">
+
+    <%- include('./__navigation'); %>
+	
+	<div class="container">
+	<div class="row">
+
+        <div class="col-lg-8 offset-lg-2">
+        <h4 class="text-center mt-4 mb-4">LDAPアカウント パスワード変更</h4>
+            
+        <div class="card">
+        <div class="card-body">
+                
+            <form method="POST" action="/changepasswd">
+            <div class="form-group row">
+                <label for="uid" class="col-md-4 col-form-label text-md-right">ユーザ名</label>
+                <input id="_csrf" type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <div class="col-md-6">
+                    <input id="uid" type="text" class="form-control" name="uid" value="<%= uid %>" disabled>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="password" class="col-md-4 col-form-label text-md-right">現在のパスワード</label>
+                <div class="col-md-6">
+                    <input id="password" type="password" class="form-control" name="passwordNow" autofocus required>
+                </div>
+            </div>                     
+            <div class="form-group row">
+                <label for="password" class="col-md-4 col-form-label text-md-right">新しいパスワード</label>
+                <div class="col-md-6">
+                    <input id="password" type="password" class="form-control" name="passwordNew" autofocus required>
+                    <small id="passwordHelp" class="form-text text-muted">
+                        下記のポリシーに準拠したパスワードを設定してください<br>
+                        ・10文字以上32文字以下であること<br>
+                        ・最低1文字以上の数字が含まれていること<br>
+                        ・最低1文字以上の記号(#?!@$%^&*-)が含まれていること
+                    </small>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="password" class="col-md-4 col-form-label text-md-right">新しいパスワード(確認)</label>
+                <div class="col-md-6">
+                    <input id="passwordConfirm" type="password" class="form-control" name="passwordConfirm" required>
+                </div>
+            </div>
+            <div class="form-group row mb-0">
+                <div class="col-md-8 offset-md-4">
+        
+                <% if(errorMessage) { %>
+                    <div class="alert alert-danger col-md-10">
+                    <% for (let n in errorMessage) { %>
+                        <%= errorMessage[n].msg %><br>
+                    <% } %>
+                    </div>
+                <% } %>
+                <% if(authErrorMessage) { %>
+                    <div class="alert alert-danger col-md-10">
+                    <%= authErrorMessage %>
+                    </div>
+                <% } %>
+                <button type="submit" class="btn btn-primary">登録</button>
+                </div>
+            </div>
+            </form>
+            
+        </div>
+        </div>
+        </div>
+
+	</div>
+	<%- include('./__copyright'); %>
+	</div>
+
+</body>
+</html>

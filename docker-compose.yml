@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  node-smbldap-passwd:
+    image: node-smbldap-passwd:latest
+    container_name: node-smbldap-passwd
+    hostname: node-smbldap-passwd
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    volumes:
+      - ./package:/opt/application:rw
+    restart: always
+    network_mode: host
+#    ports:
+#        - "3000:3000"
+    environment:
+      TZ: Asia/Tokyo
